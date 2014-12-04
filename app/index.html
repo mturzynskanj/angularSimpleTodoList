@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <style rel="stylesheet">
+        .done-true{
+            text-decoration: line-through;
+            color:#999;
+            }
+
+
+    </style>
+</head>
+<body ng-app="app">
+<div class="container">
+ <div ng-controller="appCtrl">
+        {{listName}}
+        <br />
+        <br />
+
+        <form ng-submit="renameList()">
+            <input type="text"  ng-model="newListName" />
+            <button type="btn-primary btn" type="submit" value="rename">Rename</button>
+        </form>
+     <br />
+     <br />
+        <div ng-controller="todoCtrl">
+            Remaining {{remaining()}} of {{todos.length}}
+            <table>
+               <thead><tr> <th>Todo Item</th><th>Done ???</th></tr></thead>
+                <tr ng-repeat="todo in todos | nativesort "><td><span class="done-{{todo.done}}">{{todo.text}}</span></td><td><input type="checkbox" ng-model="todo.done" /></td></tr>
+            </table>
+
+            <input type="text" ng-model="newTodo" /> <button ng-click="addTodo()" >Add item</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="./bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+
+<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
